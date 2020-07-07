@@ -38,8 +38,8 @@ console.log($query.get("name1"));
 		"value": "zhangsan"
 	},
 	{
-		"key": "name1",
-		"value": "zhangsan"
+		"key": "name2",
+		"value": "lisi"
 	}
 ]
 ==========
@@ -121,9 +121,14 @@ console.log($body.get("age1"));
 pm.environment.set("$name", "name11");
 ```
 
-## 内置插件
+## 内置模块
 
+参考文档：https://learning.postman.com/docs/postman/scripts/postman-sandbox-api-reference/
 
+* CryptoJS: 加密模块，比如md5, sha256等。
+* uuid
+* url
+* 。。。
 
 ## 实战
 
@@ -142,7 +147,7 @@ var $time = d.getTime();
 //appKey, appSecret参数中已经设置
 var $appKey =  pm.request.url.query.get("appKey");
 var $appSecret =  pm.request.url.query.get("appSecret");
-var $token = CryptoJS.SHA256($appKey+$appSecret+$time).toString();
+var $token = CryptoJS.MD5($appKey+$appSecret+$time).toString();
 
 //设置环境变量
 pm.environment.set("$time", $time);
